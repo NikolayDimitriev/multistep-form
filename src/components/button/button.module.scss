@@ -1,0 +1,11 @@
+@import "../../styles/variables.scss";
+
+.fulfilled {
+  background-color: $primary;
+  color: $font-color-white;
+}
+
+.outlined {
+  border: 1px solid $primary;
+  color: $primary;
+}

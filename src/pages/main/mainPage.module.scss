@@ -1,0 +1,93 @@
+@import "../../styles/variables.scss";
+
+.container {
+  border-radius: $border-radius-m $border-radius-m 0 0;
+  padding: 24px;
+
+  display: flex;
+  flex-direction: column;
+  min-height: 700px;
+}
+
+.user {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-color: $avatar-bg;
+  color: $avatar-text;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 40px;
+  line-height: 52px;
+}
+
+.info {
+  margin-left: 24px;
+  display: flex;
+  flex-direction: column;
+}
+
+.name {
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 26px;
+  display: inline-block;
+  margin-bottom: 8px;
+}
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.divider {
+  width: 100%;
+  height: 1px;
+  background-color: $divider-color;
+  margin: 24px 0;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  max-width: 400px;
+  gap: 24px;
+}
+
+.field {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.input {
+  width: 100%;
+  padding: 12px;
+}
+
+.button {
+  align-self: flex-start;
+  margin-top: 24px;
+}
+
+@media (max-width: 430px) {
+  .user {
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  .info {
+    margin-left: 0;
+    align-items: center;
+    margin-top: 24px;
+  }
+}
