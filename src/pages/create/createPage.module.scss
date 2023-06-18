@@ -1,0 +1,19 @@
+@import "../../styles/variables.scss";
+
+.container {
+  border-radius: $border-radius-l;
+
+  padding: 62px 0;
+  min-height: 700px;
+}
+
+.wrapper {
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+  .wrapper {
+    width: 90%;
+  }
+}

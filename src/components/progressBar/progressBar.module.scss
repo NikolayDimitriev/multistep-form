@@ -1,0 +1,80 @@
+@import "../../styles/variables.scss";
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  position: relative;
+}
+
+.lines {
+  display: flex;
+  height: 8px;
+  width: 98%;
+  margin-left: 2px;
+}
+
+.line {
+  background-color: $step-divider;
+  flex-basis: 50%;
+  transition: background-color 0.3s;
+
+  &Passed {
+    background-color: $step-passed;
+  }
+}
+
+.circles {
+  position: absolute;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  top: -4px;
+  left: 0;
+  z-index: 10;
+}
+
+.circle {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background-color: $step;
+  flex-shrink: 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  transition: background 0.3s;
+
+  &Passed {
+    background-color: $step-passed;
+  }
+
+  &Inner {
+    width: 4px;
+    height: 4px;
+    background-color: $font-color-white;
+    border-radius: 50%;
+
+    &Passed {
+      width: 10px;
+      height: 9px;
+      background: url("../../assets/arrow.svg");
+    }
+  }
+}
+
+.steps {
+  display: flex;
+  justify-content: space-between;
+  color: $step-number;
+}
+
+.number {
+  &Passed {
+    font-weight: 600;
+    color: $step-passed;
+  }
+}
