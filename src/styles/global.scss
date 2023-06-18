@@ -1,0 +1,46 @@
+@import "./variables.scss";
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  color: $font-color-main;
+  background: $bg-main;
+  font-family: Inter, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+p {
+  margin: 0;
+}
+
+input {
+  color: $font-color-main;
+  border: none;
+  outline: none;
+  background-color: inherit;
+
+  &::placeholder {
+    color: $input-placeholder;
+  }
+}
+
+button {
+  padding: 12px 16px;
+  color: inherit;
+  border: none;
+  outline: none;
+  background: none;
+}
+
+* {
+  box-sizing: border-box;
+}
