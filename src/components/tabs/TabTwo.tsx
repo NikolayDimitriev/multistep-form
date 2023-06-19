@@ -14,6 +14,8 @@ import basket from "../../assets/basket.svg";
 import plus from "../../assets/plus.svg";
 
 import styles from "./tabs.module.scss";
+import { useAppDispatch, useAppSelector } from "../../store/hook";
+import { update } from "../../store/reducers/user.slice";
 
 type ValueTabTwo = {
   advantages: string[];
@@ -42,19 +44,22 @@ type TTabTwoProps = {
 };
 
 export const TabTwo = ({ onClickNext, onClickBack }: TTabTwoProps) => {
+  const user = useAppSelector((state) => state.userReducer.user);
+  const dispatch = useAppDispatch();
+
   return (
     <>
       <Formik
         initialValues={{
-          advantages: ["", "", ""],
-          checkbox: [],
-          radio: "",
+          advantages: user.advantages,
+          checkbox: user.checkbox,
+          radio: user.radio,
         }}
         validationSchema={ValidateSchema}
         onSubmit={(values, { setSubmitting }: FormikHelpers<ValueTabTwo>) => {
-          console.log(values);
-
           setSubmitting(false);
+          dispatch(update({ ...user, ...values }));
+          onClickNext();
         }}
       >
         {({ values }) => (
@@ -90,6 +95,7 @@ export const TabTwo = ({ onClickNext, onClickBack }: TTabTwoProps) => {
                           </div>
 
                           <button
+                            id={`button-remove-${index + 1}`}
                             type="button"
                             className={styles.advantageDelete}
                             onClick={() => remove(index)}
@@ -99,6 +105,7 @@ export const TabTwo = ({ onClickNext, onClickBack }: TTabTwoProps) => {
                         </div>
                       ))}
                     <Button
+                      id="button-add"
                       type="button"
                       variant="outlined"
                       className={styles.advantageAdd}
@@ -120,15 +127,30 @@ export const TabTwo = ({ onClickNext, onClickBack }: TTabTwoProps) => {
                 className={styles.group}
               >
                 <label className={styles.groupItem}>
-                  <Field type="checkbox" name="checkbox" value="1" />
+                  <Field
+                    type="checkbox"
+                    name="checkbox"
+                    value="1"
+                    id="field-checkbox-group-option-1"
+                  />
                   <span>1</span>
                 </label>
                 <label className={styles.groupItem}>
-                  <Field type="checkbox" name="checkbox" value="2" />
+                  <Field
+                    type="checkbox"
+                    name="checkbox"
+                    value="2"
+                    id="field-checkbox-group-option-2"
+                  />
                   <span>2</span>
                 </label>
                 <label className={styles.groupItem}>
-                  <Field type="checkbox" name="checkbox" value="3" />
+                  <Field
+                    type="checkbox"
+                    name="checkbox"
+                    value="3"
+                    id="field-checkbox-group-option-3"
+                  />
                   <span>3</span>
                 </label>
               </div>
@@ -149,15 +171,30 @@ export const TabTwo = ({ onClickNext, onClickBack }: TTabTwoProps) => {
                 className={styles.group}
               >
                 <label className={styles.groupItem}>
-                  <Field type="radio" name="radio" value="1" />
+                  <Field
+                    type="radio"
+                    name="radio"
+                    value="1"
+                    id="field-radio-group-option-1"
+                  />
                   <span>1</span>
                 </label>
                 <label className={styles.groupItem}>
-                  <Field type="radio" name="radio" value="2" />
+                  <Field
+                    type="radio"
+                    name="radio"
+                    value="2"
+                    id="field-radio-group-option-2"
+                  />
                   <span>2</span>
                 </label>
                 <label className={styles.groupItem}>
-                  <Field type="radio" name="radio" value="3" />
+                  <Field
+                    type="radio"
+                    name="radio"
+                    value="3"
+                    id="field-radio-group-option-3"
+                  />
                   <span>3</span>
                 </label>
               </div>
@@ -168,18 +205,15 @@ export const TabTwo = ({ onClickNext, onClickBack }: TTabTwoProps) => {
             <div className={styles.buttons}>
               <Button
                 id="button-back"
-                onClick={onClickBack}
                 variant="outlined"
-                type="submit"
+                onClick={() => {
+                  dispatch(update({ ...user, ...values }));
+                  onClickBack();
+                }}
               >
                 Назад
               </Button>
-              <Button
-                id="button-next"
-                onClick={onClickNext}
-                variant="fulfilled"
-                type="submit"
-              >
+              <Button id="button-next" variant="fulfilled" type="submit">
                 Далее
               </Button>
             </div>

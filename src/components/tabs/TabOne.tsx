@@ -4,6 +4,8 @@ import * as Yup from "yup";
 import { Button } from "../button";
 
 import styles from "./tabs.module.scss";
+import { useAppDispatch, useAppSelector } from "../../store/hook";
+import { update } from "../../store/reducers/user.slice";
 
 type ValueTabOne = {
   nickname: string;
@@ -48,111 +50,119 @@ type TTabOneProps = {
 };
 
 export const TabOne = ({ onClickNext, onClickBack }: TTabOneProps) => {
+  const user = useAppSelector((state) => state.userReducer.user);
+  const dispatch = useAppDispatch();
+
   return (
     <>
       <Formik
         initialValues={{
-          nickname: "",
-          name: "",
-          surname: "",
-          sex: "",
+          nickname: user.nickname,
+          name: user.name,
+          surname: user.surname,
+          sex: user.sex,
         }}
         validationSchema={ValidateSchema}
         onSubmit={(values, { setSubmitting }: FormikHelpers<ValueTabOne>) => {
           setSubmitting(false);
+          dispatch(update({ ...user, ...values }));
+          onClickNext();
         }}
       >
-        <Form className={styles.form}>
-          <div className={styles.field}>
-            <label htmlFor="field-nickname">Nickname</label>
+        {({ values }) => (
+          <Form className={styles.form}>
+            <div className={styles.field}>
+              <label htmlFor="field-nickname">Nickname</label>
 
-            <Field
-              name="nickname"
-              id="field-nickname"
-              placeholder="Placeholder"
-              className={styles.input}
-            />
-            <span>
-              Tip:
-              <ErrorMessage
+              <Field
                 name="nickname"
-                component="span"
-                className="error"
+                id="field-nickname"
+                placeholder="Placeholder"
+                className={styles.input}
               />
-            </span>
-          </div>
-          <div className={styles.field}>
-            <label htmlFor="field-name">Name</label>
+              <span>
+                Tip:
+                <ErrorMessage
+                  name="nickname"
+                  component="span"
+                  className="error"
+                />
+              </span>
+            </div>
+            <div className={styles.field}>
+              <label htmlFor="field-name">Name</label>
 
-            <Field
-              name="name"
-              id="field-name"
-              placeholder="Placeholder"
-              className={styles.input}
-            />
-            <span>
-              Tip:
-              <ErrorMessage name="name" component="span" className="error" />
-            </span>
-          </div>
-          <div className={styles.field}>
-            <label htmlFor="field-surname">Surname</label>
+              <Field
+                name="name"
+                id="field-name"
+                placeholder="Placeholder"
+                className={styles.input}
+              />
+              <span>
+                Tip:
+                <ErrorMessage name="name" component="span" className="error" />
+              </span>
+            </div>
+            <div className={styles.field}>
+              <label htmlFor="field-surname">Surname</label>
 
-            <Field
-              name="surname"
-              id="field-surname"
-              placeholder="Placeholder"
-              className={styles.input}
-            />
-            <span>
-              Tip:
-              <ErrorMessage name="surname" component="span" className="error" />
-            </span>
-          </div>
-          <div className={styles.field}>
-            <label htmlFor="field-sex">Sex</label>
+              <Field
+                name="surname"
+                id="field-surname"
+                placeholder="Placeholder"
+                className={styles.input}
+              />
+              <span>
+                Tip:
+                <ErrorMessage
+                  name="surname"
+                  component="span"
+                  className="error"
+                />
+              </span>
+            </div>
+            <div className={styles.field}>
+              <label htmlFor="field-sex">Sex</label>
 
-            <Field
-              name="sex"
-              id="field-sex"
-              placeholder="Не выбрано"
-              className={styles.select}
-              as="select"
-            >
-              <option value="" style={{ display: "none" }}>
-                Не выбрано
-              </option>
-              <option id="field-sex-option-man" value="man">
-                man
-              </option>
-              <option id="field-sex-option-woman" value="woman">
-                woman
-              </option>
-            </Field>
-            <span>
-              Tip:
-              <ErrorMessage name="sex" component="span" className="error" />
-            </span>
-          </div>
-          <div className={styles.buttons}>
-            <Button
-              id="button-back"
-              onClick={onClickBack}
-              variant="outlined"
-              type="submit"
-            >
-              Назад
-            </Button>
-            <Button
-              id="button-next"
-              onClick={onClickNext}
-              variant="fulfilled"
-              type="submit"
-            >
-              Далее
-            </Button>
-          </div>
-        </Form>
+              <Field
+                name="sex"
+                id="field-sex"
+                placeholder="Не выбрано"
+                className={styles.select}
+                as="select"
+              >
+                <option value="" style={{ display: "none" }}>
+                  Не выбрано
+                </option>
+                <option id="field-sex-option-man" value="man">
+                  man
+                </option>
+                <option id="field-sex-option-woman" value="woman">
+                  woman
+                </option>
+              </Field>
+              <span>
+                Tip:
+                <ErrorMessage name="sex" component="span" className="error" />
+              </span>
+            </div>
+            <div className={styles.buttons}>
+              <Button
+                id="button-back"
+                variant="outlined"
+                onClick={() => {
+                  dispatch(update({ ...user, ...values }));
+                  onClickBack();
+                }}
+              >
+                Назад
+              </Button>
+              <Button id="button-next" type="submit" variant="fulfilled">
+                Далее
+              </Button>
+            </div>
+          </Form>
+        )}
       </Formik>
     </>
   );

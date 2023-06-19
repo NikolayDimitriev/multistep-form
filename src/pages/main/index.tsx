@@ -10,6 +10,7 @@ import { ROUTES } from "../../routes";
 
 import styles from "./mainPage.module.scss";
 import { InputPhone } from "../../components/InputPhone";
+import { useAppSelector } from "../../store/hook";
 
 type Values = {
   phone: string;
@@ -23,6 +24,7 @@ const ValidateSchema = Yup.object().shape({
 
 function Main() {
   const navigate = useNavigate();
+  const { phone, email } = useAppSelector((state) => state.userReducer.user);
 
   return (
     <div className={cn("container", styles.container)}>
@@ -43,8 +45,8 @@ function Main() {
       <div className={styles.divider}></div>
       <Formik
         initialValues={{
-          phone: "(985) 184 31 54",
-          email: "dimitrievk56@gmail.com",
+          phone: phone,
+          email: email,
         }}
         validationSchema={ValidateSchema}
         onSubmit={(values, { setSubmitting }: FormikHelpers<Values>) => {
@@ -59,7 +61,7 @@ function Main() {
             <Field
               name="phone"
               id="phone"
-              placeholder="+7 (999) 999-99-99"
+              placeholder="+7 (999) 999 99 99"
               className={styles.input}
               as={InputPhone}
             />
