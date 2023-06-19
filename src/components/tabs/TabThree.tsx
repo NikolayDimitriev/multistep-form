@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { Formik, Form, FormikHelpers, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import cn from "classnames";
@@ -25,7 +26,25 @@ type TTabThreeProps = {
 
 export const TabThree = ({ onClickBack, toggleModal }: TTabThreeProps) => {
   const user = useAppSelector((state) => state.userReducer.user);
+  const [count, setCount] = useState(0);
   const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    const count = calcCountChar(user.about);
+    setCount(count);
+  }, []);
+
+  const handleInput = (e: InputEvent) => {
+    const target = e.target as HTMLTextAreaElement;
+    const value = target.value;
+
+    const count = calcCountChar(value);
+    setCount(count);
+  };
+
+  const calcCountChar = (text: string) => {
+    return text.split(" ").reduce((acc, cur) => acc + cur.length, 0);
+  };
 
   return (
     <>
@@ -50,14 +69,24 @@ export const TabThree = ({ onClickBack, toggleModal }: TTabThreeProps) => {
                 name="about"
                 id="field-about"
                 placeholder="Placeholder"
+                onInput={(e: InputEvent) => handleInput(e)}
                 className={styles.textarea}
                 component="textarea"
                 rows={4}
               />
-              <span>
-                Tip:
-                <ErrorMessage name="about" component="span" className="error" />
-              </span>
+              <div className={styles.info}>
+                <span>
+                  Tip:
+                  <ErrorMessage
+                    name="about"
+                    component="span"
+                    className="error"
+                  />
+                </span>
+                <span className={styles.count}>
+                  Кол-во символов без пробелов: {count}
+                </span>
+              </div>
             </div>
 
             <div className={styles.buttons}>
