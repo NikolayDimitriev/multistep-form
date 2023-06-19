@@ -49,7 +49,7 @@ function Main() {
           email: email,
         }}
         validationSchema={ValidateSchema}
-        onSubmit={(values, { setSubmitting }: FormikHelpers<Values>) => {
+        onSubmit={(_, { setSubmitting }: FormikHelpers<Values>) => {
           setSubmitting(false);
           navigate(ROUTES.CREATE);
         }}

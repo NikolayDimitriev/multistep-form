@@ -77,7 +77,7 @@ export const TabTwo = ({ onClickNext, onClickBack }: TTabTwoProps) => {
                 }) => (
                   <>
                     {values.advantages.length > 0 &&
-                      values.advantages.map((advantage, index) => (
+                      values.advantages.map((_, index) => (
                         <div className={styles.advantage} key={index}>
                           <div className={styles.advantageBlock}>
                             <Field
