@@ -11,7 +11,7 @@ import successIcon from "../../assets/success.svg";
 import errorIcon from "../../assets/error.svg";
 import closeIcon from "../../assets/closeIcon.svg";
 
-import styles from "./Modal.module.scss";
+import styles from "./modal.module.scss";
 
 type TModalProps = {
   isOpen: boolean;
