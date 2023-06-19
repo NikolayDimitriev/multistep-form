@@ -5,7 +5,11 @@ import { ROUTES } from "../../routes";
 import cn from "classnames";
 
 import { ProgressBar } from "../../components/progressBar";
+import { TabOne } from "../../components/tabs/TabOne";
+
 import styles from "./createPage.module.scss";
+import { TabTwo } from "../../components/tabs/TabTwo";
+import { TabThree } from "../../components/tabs/TabThree";
 
 function Create() {
   const navigate = useNavigate();
@@ -28,9 +32,15 @@ function Create() {
     <div className={cn("container", styles.container)}>
       <div className={styles.wrapper}>
         <ProgressBar step={toggle} />
-        <span>{toggle}</span>
-        <button onClick={onClickBack}>Назад</button>
-        <button onClick={onClickNext}>Далее</button>
+        {toggle === 1 && (
+          <TabOne onClickNext={onClickNext} onClickBack={onClickBack} />
+        )}
+        {toggle === 2 && (
+          <TabTwo onClickNext={onClickNext} onClickBack={onClickBack} />
+        )}
+        {toggle === 3 && (
+          <TabThree onClickNext={onClickNext} onClickBack={onClickBack} />
+        )}
       </div>
     </div>
   );

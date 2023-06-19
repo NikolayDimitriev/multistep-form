@@ -8,7 +8,7 @@ type TProgressBarProps = {
 
 export const ProgressBar = ({ step }: TProgressBarProps) => {
   return (
-    <div className={styles.wrapper}>
+    <div className={styles.progressBar}>
       <div className={styles.lines}>
         <div
           className={cn(styles.line, {

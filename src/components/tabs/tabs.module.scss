@@ -1,0 +1,92 @@
+@import "../../styles/variables.scss";
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-width: 336px;
+}
+
+.input {
+  width: 100%;
+  padding: 12px;
+}
+
+.select {
+  width: 100%;
+  padding: 12px;
+  color: $font-color-main;
+  outline: none;
+  background-color: inherit;
+  border: 1px solid $input-border;
+  border-radius: $border-radius-s;
+}
+
+.textarea {
+  resize: none;
+  outline: none;
+  padding: 12px;
+  background-color: inherit;
+  border: 1px solid $input-border;
+  border-radius: $border-radius-s;
+
+  &Field {
+    max-width: 100%;
+    width: 100%;
+  }
+}
+
+.title {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  margin: 0;
+}
+
+.advantage {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+
+  &Block {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    flex-grow: 1;
+  }
+
+  &Delete {
+    padding: 0;
+  }
+
+  &Add {
+    align-self: flex-start;
+  }
+}
+
+.group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+
+  &Item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

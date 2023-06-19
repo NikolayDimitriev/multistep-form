@@ -25,6 +25,7 @@ main {
 a {
   text-decoration: none;
   color: inherit;
+  cursor: pointer;
 }
 
 p {
@@ -50,6 +51,7 @@ button {
   outline: none;
   background: none;
   border-radius: $border-radius-s;
+  cursor: pointer;
 }
 
 * {
