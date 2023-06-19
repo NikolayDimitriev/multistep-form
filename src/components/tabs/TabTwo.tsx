@@ -41,7 +41,7 @@ type TTabTwoProps = {
   onClickBack(): void;
 };
 
-export const TabTwo = ({ onClickBack }: TTabTwoProps) => {
+export const TabTwo = ({ onClickNext, onClickBack }: TTabTwoProps) => {
   return (
     <>
       <Formik
@@ -176,7 +176,7 @@ export const TabTwo = ({ onClickBack }: TTabTwoProps) => {
               </Button>
               <Button
                 id="button-next"
-                // onClick={onClickNext}
+                onClick={onClickNext}
                 variant="fulfilled"
                 type="submit"
               >
