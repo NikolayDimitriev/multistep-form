@@ -2,6 +2,7 @@ import { useCallback, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import cn from "classnames";
 
+import { ROUTES } from "../../routes";
 import { useAppSelector } from "../../store/hook";
 
 import { Button } from "../button";
@@ -11,7 +12,6 @@ import errorIcon from "../../assets/error.svg";
 import closeIcon from "../../assets/closeIcon.svg";
 
 import styles from "./Modal.module.scss";
-import { ROUTES } from "../../routes";
 
 type TModalProps = {
   isOpen: boolean;
